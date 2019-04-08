@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="card card-login mx-auto mt-5">
+    <div class="card-header">Cadastro de Endereços - Login</div>
+    <div class="card-body">
+      <form [formGroup]="formLogin" class="needs-validation" (submit)="autenticar()">
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="text" id="login" class="form-control"
+              [ngClass]="{'is-invalid':formLogin.get('login').errors?.required || formLogin.get('login').errors?.maxlength}"
+              placeholder="Login" formControlName="login">
+            <div *ngIf="formLogin.get('login').errors?.required" class="invalid-feedback">
+              Campo obrigatório
+            </div>
+            <div *ngIf="formLogin.get('login').errors?.maxlength" class="invalid-feedback">
+              Valor digitado excedeu a quantidade máxima de 20 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="password" id="senha" class="form-control"
+              [ngClass]="{'is-invalid':formLogin.get('senha').errors?.required || formLogin.get('senha').errors?.maxlength}"
+              placeholder="Senha" formControlName="senha">
+            <div *ngIf="formLogin.get('login').errors?.required" class="invalid-feedback">
+              Campo obrigatório
+            </div>
+            <div *ngIf="formLogin.get('login').errors?.maxlength" class="invalid-feedback">
+              Valor digitado excedeu a quantidade máxima de 20 caracteres
+            </div>
+          </div>
+        </div>
+        <input [disabled]='formLogin.invalid' type='submit' value='Entrar' class="btn btn-primary btn-block" />
+      </form>
+    </div>
+  </div>
+</div>
