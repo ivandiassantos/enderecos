@@ -14,7 +14,7 @@ export class AutenticacaoService {
       'Authorization': 'Basic ' + btoa('desafio:desafio-client')
     });
     return this.http.post(
-      'http://localhost:9092/oauth/token', { login, senha }, { headers: headers, params: { grant_type: 'password', login, senha } })
+      'http://localhost:9092/oauth/token', { username:login, password:senha }, { headers: headers, params: { grant_type: 'password', username:login, password:senha } })
       .pipe(tap(res => {
         const token: string = res['access_token'];
         localStorage.setItem('token', token);

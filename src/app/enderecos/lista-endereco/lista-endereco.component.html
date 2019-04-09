@@ -1,3 +1,32 @@
-<p>
-  lista-endereco works!
-</p>
+<div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-table"></i>
+      Endereços Cadastrados
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <caption *ngIf='enderecos?.length === 0'>Nenhum endereço cadastrado.</caption>
+          <thead>
+            <tr>
+              <th>CEP</th>
+              <th>Bairro</th>
+              <th>Cidade</th>
+              <th>UF</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let endereco of enderecos'>
+              <td>{{endereco.cep}}</td>
+              <td>{{endereco.bairro}}</td>
+              <td>{{endereco.cidade}}</td>
+              <td>{{endereco.uf}}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <a class="btn btn-link" [routerLink]="['/cadastra-endereco']">Cadastrar um novo endereço</a>
+      </div>
+    </div>
+  </div>

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   formLogin: FormGroup;
+  deveMostrarMensagemErro:boolean = false;
+  mensagemErro:string = '';
   constructor(
     private formBuilder: FormBuilder,
     private autenticacaoService: AutenticacaoService,
@@ -31,11 +33,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => this.router.navigate(['/lista-enderecos']),
         erro => {
-          // this.router.navigate(['/lista-membros']);
-          console.log(erro);
+          this.deveMostrarMensagemErro = true;
+          this.mensagemErro = 'Login e/ou senha inválido(s)';
           this.formLogin.reset();
-          
-
         }
       );
 

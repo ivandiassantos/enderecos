@@ -1,0 +1,117 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fa fa-table"></i>
+    Cadastrar Endereço
+  </div>
+  <div class="card-body">
+    <div *ngIf='exibeMensagemSucesso' class="alert alert-info alert-dismissible fade show" role="alert">
+      {{mensagem}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div *ngIf='exibeMensagemErro' class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{mensagem}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <form [formGroup]="formCadastroEndereco" class="needs-validation" (submit)="cadastrar()">
+      <div class="row">
+        <div class="col-2">
+          <div class="form-group">
+            <label for="cep">CEP</label>
+            <input type="text" mascara="99.999-999" #cep (blur)="consultaCEP(cep.value)" class="form-control" id="cep"
+              placeholder="Somente números" formControlName="cep"
+              [ngClass]="{'is-invalid':formCadastroEndereco.get('cep').errors?.required || formCadastroEndereco.get('cep').errors?.maxlength}">
+            <div *ngIf="formCadastroEndereco.get('cep').errors?.required" class="invalid-feedback">
+              Campo obrigatório
+            </div>
+            <div *ngIf="formCadastroEndereco.get('cep').errors?.maxlength" class="invalid-feedback">
+              Valor digitado excedeu a quantidade máxima de 10 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="bairro">Bairro</label>
+            <input type="text" class="form-control" id="bairro" placeholder="Bairro" formControlName="bairro"
+              [ngClass]="{'is-invalid':formCadastroEndereco.get('bairro').errors?.required || formCadastroEndereco.get('bairro').errors?.maxlength}">
+            <div *ngIf="formCadastroEndereco.get('bairro').errors?.required" class="invalid-feedback">
+              Campo obrigatório
+            </div>
+            <div *ngIf="formCadastroEndereco.get('bairro').errors?.maxlength" class="invalid-feedback">
+              Valor digitado excedeu a quantidade máxima de 100 caracteres
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="cidade">Cidade</label>
+            <input type="text" class="form-control" id="cidade" placeholder="Cidade" formControlName="cidade"
+              [ngClass]="{'is-invalid':formCadastroEndereco.get('cidade').errors?.required || formCadastroEndereco.get('cidade').errors?.maxlength}">
+            <div *ngIf="formCadastroEndereco.get('cidade').errors?.required" class="invalid-feedback">
+              Campo obrigatório
+            </div>
+            <div *ngIf="formCadastroEndereco.get('cidade').errors?.maxlength" class="invalid-feedback">
+              Valor digitado excedeu a quantidade máxima de 100 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label for="uf">UF</label>
+            <select class="form-control" id="uf" formControlName="uf"
+              [ngClass]="{'is-invalid':formCadastroEndereco.get('uf').errors?.required}">
+              <option>Selecione</option>
+              <option *ngFor='let uf of listaUfs' value="{{uf.sigla}}">{{uf.sigla}}</option>
+            </select>
+            <div *ngIf="formCadastroEndereco.get('uf').errors?.required" class="invalid-feedback">
+              Campo obrigatório
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label for="logradouro">Lograduro</label>
+            <input type="text" class="form-control" id="logradouro" placeholder="Logradouro"
+              formControlName="logradouro"
+              [ngClass]="{'is-invalid':formCadastroEndereco.get('logradouro').errors?.required || formCadastroEndereco.get('logradouro').errors?.maxlength}">
+            <div *ngIf="formCadastroEndereco.get('logradouro').errors?.required" class="invalid-feedback">
+              Campo obrigatório
+            </div>
+            <div *ngIf="formCadastroEndereco.get('logradouro').errors?.maxlength" class="invalid-feedback">
+              Valor digitado excedeu a quantidade máxima de 100 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="complemento">Complemento</label>
+            <input type="text" class="form-control" id="complemento" placeholder="Complemento"
+              [ngClass]="{'is-invalid':formCadastroEndereco.get('complemento').errors?.maxlength}"
+              formControlName="complemento">
+            <div *ngIf="formCadastroEndereco.get('complemento').errors?.maxlength" class="invalid-feedback">
+              Valor digitado excedeu a quantidade máxima de 100 caracteres
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1">
+          <button class="btn btn-primary" type="submit" [disabled]='formCadastroEndereco.invalid'>Cadastrar</button>
+        </div>
+        <div class="col-1">
+          <button class="btn btn-primary" type="reset">Limpar</button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-primary">Cancelar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

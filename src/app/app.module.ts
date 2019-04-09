@@ -6,21 +6,24 @@ import { AppComponent } from './app.component';
 import { LayoutLoginModule } from './layout/layout-login/layout-login.module';
 import { LoginModule } from './login/login.module';
 import { RequestInterceptor } from './interceptor/request.interceptor';
-import { LayoutFuncionalidadeComponent } from './layout/layout-funcionalidade/layout-funcionalidade.component';
-import { ListaEnderecoComponent } from './enderecos/lista-endereco/lista-endereco.component';
+import { LayoutFuncionalidadeModule } from './layout/layout-funcionalidade/layout-funcionalidade.module';
+import { ListaEnderecoModule } from './enderecos/lista-endereco/lista-endereco.module';
+import { CadastraEnderecoModule } from './enderecos/cadastra-endereco/cadastra-endereco.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LayoutFuncionalidadeComponent,
-    ListaEnderecoComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
     LayoutLoginModule,
+    LayoutFuncionalidadeModule,
+    ListaEnderecoModule,
+    CadastraEnderecoModule,
     LoginModule
   ],
   providers: [

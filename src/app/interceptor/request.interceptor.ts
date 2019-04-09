@@ -8,7 +8,7 @@ export class RequestInterceptor implements HttpInterceptor {
         next: import("@angular/common/http").HttpHandler): 
         import("rxjs").Observable<import("@angular/common/http").HttpEvent<any>> {
             const token = localStorage.getItem('token');
-            if(token){
+            if(token && !req.url.includes('viacep')){
                 req = req.clone({
                     setHeaders:{
                         'Authorization': 'Bearer '+token
