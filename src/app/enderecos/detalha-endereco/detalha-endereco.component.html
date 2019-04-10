@@ -1,0 +1,57 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fa fa-table"></i>
+    Detalhar Endereço
+  </div>
+  <div class="card-body">
+    <form *ngIf="endereco">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            CEP: {{endereco.cep}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            Bairro: {{endereco.bairro}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            Cidade: {{endereco.cidade}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            UF: {{endereco.uf}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            Lograduro: {{endereco.logradouro}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            Complemento: {{endereco.complemento}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <a class="btn btn-link" [routerLink]="['/lista-enderecos']">Voltar Para a Lista de Endereços</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

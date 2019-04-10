@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CadastraEnderecoComponent } from './cadastra-endereco.component';
 import { MascaraModule } from 'src/app/diretivas/mascara/mascara.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [CadastraEnderecoComponent],
@@ -10,7 +11,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CommonModule,
     MascaraModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class CadastraEnderecoModule { }

@@ -14,7 +14,8 @@ export class RequestInterceptor implements HttpInterceptor {
                         'Authorization': 'Bearer '+token
                     }
                 })
-            } 
+            }
+             
             return next.handle(req);
     }
 

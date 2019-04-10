@@ -14,10 +14,21 @@ export class EnderecoService {
   }  
 
   cadastrar(endereco:Endereco){
-    console.log('Endereço: ', JSON.stringify(endereco));
     const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=utf-8'
+      'Content-type': 'application/json'
     });
-    return this.http.post('http://localhost:9093/v1/endereco', JSON.stringify(endereco), {headers});
+    return this.http.post('http://localhost:9093/v1/endereco', endereco, {headers:headers});
+  }
+
+  obterPor(codEndereco:number){
+    return this.http.get<Endereco>('http://localhost:9093/v1/endereco/'+codEndereco);
+  }
+
+  alterar(endereco:Endereco){
+    return this.http.put('http://localhost:9093/v1/endereco', endereco);
+  }
+
+  excluir(codEndereco:number){
+    return this.http.delete('http://localhost:9093/v1/endereco/'+codEndereco);
   }
 }

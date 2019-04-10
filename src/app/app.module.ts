@@ -9,7 +9,9 @@ import { RequestInterceptor } from './interceptor/request.interceptor';
 import { LayoutFuncionalidadeModule } from './layout/layout-funcionalidade/layout-funcionalidade.module';
 import { ListaEnderecoModule } from './enderecos/lista-endereco/lista-endereco.module';
 import { CadastraEnderecoModule } from './enderecos/cadastra-endereco/cadastra-endereco.module';
-
+import { AlteraEnderecoModule } from './enderecos/altera-endereco/altera-endereco.module';
+import { DetalhaEnderecoModule } from './enderecos/detalha-endereco/detalha-endereco.module';
+import { ErrorInterceptor } from './interceptor/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { CadastraEnderecoModule } from './enderecos/cadastra-endereco/cadastra-e
     LayoutFuncionalidadeModule,
     ListaEnderecoModule,
     CadastraEnderecoModule,
+    AlteraEnderecoModule,
+    DetalhaEnderecoModule,
     LoginModule
   ],
   providers: [
@@ -31,7 +35,13 @@ import { CadastraEnderecoModule } from './enderecos/cadastra-endereco/cadastra-e
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
     }
+
   ],
   bootstrap: [AppComponent]
 })

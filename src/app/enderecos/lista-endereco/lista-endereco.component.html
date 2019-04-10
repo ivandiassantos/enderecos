@@ -1,32 +1,76 @@
 <div class="card mb-3">
-    <div class="card-header">
-      <i class="fa fa-table"></i>
-      Endereços Cadastrados
+  <div class="card-header">
+    <i class="fa fa-table"></i>
+    Endereços Cadastrados
+  </div>
+  <div class="card-body">
+    <div *ngIf='exibeMensagemSucesso' class="alert alert-info alert-dismissible fade show" role="alert">
+      {{mensagem}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-          <caption *ngIf='enderecos?.length === 0'>Nenhum endereço cadastrado.</caption>
-          <thead>
-            <tr>
-              <th>CEP</th>
-              <th>Bairro</th>
-              <th>Cidade</th>
-              <th>UF</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor='let endereco of enderecos'>
-              <td>{{endereco.cep}}</td>
-              <td>{{endereco.bairro}}</td>
-              <td>{{endereco.cidade}}</td>
-              <td>{{endereco.uf}}</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-        <a class="btn btn-link" [routerLink]="['/cadastra-endereco']">Cadastrar um novo endereço</a>
+    <div *ngIf='exibeMensagemErro' class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{mensagem}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <caption *ngIf='enderecos?.length === 0'>Nenhum endereço cadastrado.</caption>
+        <thead>
+          <tr>
+            <th>CEP</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>UF</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let endereco of enderecos'>
+            <td>{{endereco.cep}}</td>
+            <td>{{endereco.bairro}}</td>
+            <td>{{endereco.cidade}}</td>
+            <td>{{endereco.uf}}</td>
+            <td>
+              <button class="btn btn-light botao-acao" data-toggle="tooltip" data-placement="top" title="Alterar"
+                [routerLink]="['/altera-endereco', endereco.codEndereco]">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button class="btn btn-light botao-acao" title="Excluir" (click)="excluirEndereco(endereco)">
+                <i class="fa fa-trash"></i>
+              </button>
+              <button class="btn btn-light botao-acao" data-toggle="tooltip" data-placement="top" title="Detalhar"
+                [routerLink]="['/detalha-endereco', endereco.codEndereco]">
+                <i class="fa fa-info"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a class="btn btn-link" [routerLink]="['/cadastra-endereco']">Cadastrar um novo endereço</a>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="confirmacaoExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
+</div>
